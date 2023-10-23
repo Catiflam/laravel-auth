@@ -6,18 +6,18 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Project;
 
 class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * return \Illuminate\Http\Response
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(10);
+        return view("admin.projects.index", compact("projects"));
     }
 
     /**
@@ -45,11 +45,11 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * return \Illuminate\Http\Response
      */
     public function show(Project $project)
     {
-        //
+        return view("admin.projects.show", compact("project"));
     }
 
     /**
