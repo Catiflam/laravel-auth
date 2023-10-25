@@ -39,9 +39,9 @@
                   </a>
       
                   <a href="javascript:void(0)" class="d-inline-block mx-1 text-danger" data-bs-toggle="modal"
-                    data-bs-target="#delete-rojects-modal-{{ $project->id }}">
-                    <i class="fa-solid fa-trash"></i>
-                  </a>
+                  data-bs-target="#delete-project-modal-{{ $project->id }}">
+                  <i class="fa-solid fa-trash"></i>
+                </a>
             </td>
         </tr>
         @empty
