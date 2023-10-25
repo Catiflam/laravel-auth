@@ -25,8 +25,13 @@
     <div id="app">
       @include('partials._navbar')
 
-      <main class="">
-        @yield('content')
+      <main>
+        <header class="container py-3 border-bottom">
+          @yield('content-header')
+        </header>
+        <div class="container mt-3">
+          @yield('content')
+        </div>
       </main>
     </div>
   </body>

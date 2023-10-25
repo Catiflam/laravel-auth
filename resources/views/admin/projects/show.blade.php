@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
+@section('content-header')
+<h1 class="my-3">{{$project->title}}</h1>
+<a href="{{route('admin.projects.index')}}" class="btn btn-outline-primary">Torna alla lista </a>
+@endsection
+
 @section('content')
-<div class="container mt-5">
-  <a href="{{route('admin.projects.index')}}" class="btn btn-outline-primary">Torna alla lista </a>
-  <h1>{{$project->title}}</h1>
   <div class="row g-5 mt-3">
     <div class="col-4">
       <p>
@@ -28,6 +30,4 @@
         {{$project->content}}
     </div>
   </div>
-</div>
-
 @endsection
