@@ -6,7 +6,7 @@
 
 @section('content-header')
 <h1 class="my-3">Lista Project</h1>
-<a href="{{route('admin.projects.create')}}" class="btn btn-outline-primary">Crea project </a>
+<a href="{{route('admin.projects.create')}}" class="btn btn-outline-success"><i class="fa-solid fa-plus me-1"></i>Crea project </a>
 @endsection
 
 @section('content')
@@ -30,7 +30,18 @@
             <td>{{ $project->created_at }}</td>
             <td>{{ $project->updated_at }}</td>
             <td>
-                <a href="{{route('admin.projects.show',$project)}}"><i class="fa-solid fa-up-right-from-square"></i></a>
+                <a href="{{ route('admin.projects.show', $project) }}" class="d-inline-block mx-1">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+      
+                  <a href="{{ route('admin.projects.edit', $project) }}" class="d-inline-block mx-1">
+                    <i class="fa-solid fa-pencil"></i>
+                  </a>
+      
+                  <a href="javascript:void(0)" class="d-inline-block mx-1 text-danger" data-bs-toggle="modal"
+                    data-bs-target="#delete-rojects-modal-{{ $project->id }}">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
             </td>
         </tr>
         @empty
@@ -42,4 +53,33 @@
 </table>
 
   {{ $projects ->links('pagination::bootstrap-5') }}
+@endsection
+
+@section('modals')
+  @foreach ($projects as $project)
+    <div class="modal fade" id="delete-project-modal-{{ $project->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Conferma eliminazione</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Sei sicuro di voler eliminare il project "{{ $project->title }}"?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+
+            <form method="POST" action="{{ route('admin.projects.destroy', $project) }}">
+              @method('DELETE')
+              @csrf
+              <button class="btn btn-danger">Elimina</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
 @endsection

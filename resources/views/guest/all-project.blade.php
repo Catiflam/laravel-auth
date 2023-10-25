@@ -6,9 +6,9 @@
 
     <div class="row g-3">
 
-      @forelse($projects as $project)
+      @forelse($posts as $post)
         <div class="col-4">
-          @include('partials.project.card')
+          @include('partials.post.card')
         </div>
       @empty
         <div class="col-12">
@@ -17,15 +17,7 @@
       @endforelse
     </div>
 
-    <a href="{{ route('guest.projects.all') }}">Vedi tutti</a>
-
-    {{-- {{ $posts->links('pagination::bootstrap-5') }} --}}
-
-  </section>
-  <section class="container mt-5">
-    <h1>Altra sezione...</h1>
-
-
+    {{ $posts->links('pagination::bootstrap-5') }}
 
   </section>
 @endsection

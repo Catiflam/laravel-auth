@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
-
-
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 
 /*
@@ -21,6 +19,8 @@ use App\Http\Controllers\Guest\PageController as GuestPageController;
 */
 
 Route::get('/', [GuestPageController::class, 'index'])->name('guest.home');
+Route::get('/projects/all', [GuestPageController::class, 'all_projects'])->name('guest.projects.all');
+Route::get('/projects/{slug}', [GuestPageController::class, 'detail_project'])->name('guest.projects.detail');
 
 
 Route::middleware(['auth', 'verified'])
